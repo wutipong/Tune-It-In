@@ -1,17 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Input.InputListeners;
+using MonoGame.Extended.Graphics;
 
 namespace Tune_It_In
 {
+    public enum Input
+    {
+        None, Left, Right, Enter
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private KeyboardListener keyboardListener;
+        private GamePadListener gamePadListener;
+
+        private Scene scene;
+        private Input input;
+
+        private GameScene gameScene = new GameScene();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -29,6 +43,62 @@ namespace Tune_It_In
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            scene = gameScene;
+
+            keyboardListener = new KeyboardListener();
+            keyboardListener.KeyReleased += KeyboardListener_KeyReleased;
+
+            gamePadListener = new GamePadListener();
+            gamePadListener.ButtonUp += GamePadListener_ButtonUp;
+        }
+
+        private void GamePadListener_ButtonUp(object sender, GamePadEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case Buttons.DPadLeft:
+                    input = Input.Left;
+                    break;
+
+                case Buttons.DPadRight:
+                    input = Input.Right;
+                    break;
+
+                case Buttons.A:
+                    input = Input.Enter;
+                    break;
+            }
+        }
+
+        private void KeyboardListener_KeyReleased(object sender, KeyboardEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Keys.A:
+                    input = Input.Left;
+                    break;
+
+                case Keys.Left:
+                    input = Input.Left;
+                    break;
+
+                case Keys.D:
+                    input = Input.Right;
+                    break;
+
+                case Keys.Right:
+                    input = Input.Right;
+                    break;
+
+                case Keys.Space:
+                    input = Input.Enter;
+                    break;
+
+                case Keys.Enter:
+                    input = Input.Enter;
+                    break;
+            }
         }
 
         /// <summary>
@@ -41,6 +111,8 @@ namespace Tune_It_In
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            gameScene.Load(Content);
         }
 
         /// <summary>
@@ -59,11 +131,12 @@ namespace Tune_It_In
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            input = Input.None;
 
-            // TODO: Add your update logic here
+            keyboardListener.Update(gameTime);
+            gamePadListener.Update(gameTime);
 
+            scene.Update(gameTime, input);
             base.Update(gameTime);
         }
 
@@ -73,10 +146,11 @@ namespace Tune_It_In
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.WhiteSmoke);
 
-            // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            scene.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
