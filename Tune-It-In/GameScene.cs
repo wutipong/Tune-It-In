@@ -36,15 +36,19 @@ namespace Tune_It_In
         private const float factor = 1.0f / count;
         private Random r = new Random();
 
-        //private int duration = 105;
-
         private CountDownTimer countdown = new CountDownTimer { Duration = 105 };
         private ScoreCounter score = new ScoreCounter();
+        private RadioControl radio = new RadioControl();
+        private Texture2D background;
+        public int Score { get { return score.Score; } }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             countdown.Draw(spriteBatch);
             score.Draw(spriteBatch);
+
+            radio.Draw(spriteBatch);
         }
 
         public override void Load(ContentManager content)
@@ -59,6 +63,12 @@ namespace Tune_It_In
 
             countdown.Load(content);
             score.Load(content);
+
+            bgmInstance = bgm.CreateInstance();
+            noise1 = pinkNoise.CreateInstance();
+            noise2 = pinkNoise.CreateInstance();
+
+            background = content.Load<Texture2D>("game");
         }
 
         public int NextTarget()
@@ -66,28 +76,31 @@ namespace Tune_It_In
             return r.Next(MinPosition, MaxPosition);
         }
 
-        public override void Update(GameTime gameTime, Input input)
+        public override bool Update(GameTime gameTime, Input input)
         {
             if (begin)
             {
                 begin = false;
 
-                bgmInstance = bgm.CreateInstance();
                 bgmInstance.Play();
 
-                noise1 = pinkNoise.CreateInstance();
                 noise1.Pan = 0.5f;
                 noise1.Volume = 0.5f;
                 noise1.IsLooped = true;
 
                 noise1.Play();
 
-                noise2 = brownNoise.CreateInstance();
                 noise2.Pan = -0.5f;
                 noise2.Volume = 0.5f;
                 noise2.IsLooped = true;
 
                 noise2.Play();
+
+                score.LastScoreTime = gameTime.TotalGameTime;
+                score.Score = 0;
+
+                countdown.Duration = 105;
+                countdown.Reset();
             }
             switch (input)
             {
@@ -105,14 +118,15 @@ namespace Tune_It_In
                     if (position == target)
                     {
                         correct.Play();
-                        score.Score += 100;
+                        score.AddScore(gameTime);
+                        target = NextTarget();
                     }
                     else
+
                     {
                         incorrect.Play();
                     }
 
-                    target = NextTarget();
                     break;
             }
 
@@ -129,6 +143,22 @@ namespace Tune_It_In
             bgmInstance.Volume *= 1.0f - noiseVolumeFactor * factor;
 
             countdown.Update(gameTime);
+
+            if (countdown.Duration == 0)
+            {
+                noise1.Stop();
+                noise2.Stop();
+                return true;
+            }
+
+            radio.Position = position;
+
+            return false;
+        }
+
+        public void Reset()
+        {
+            begin = true;
         }
     }
 }

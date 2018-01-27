@@ -17,6 +17,8 @@ namespace Tune_It_In
         private TimeSpan lastUpdate;
         private BitmapFont font;
 
+        private bool begin = true;
+
         public void Load(ContentManager content)
         {
             font = content.Load<BitmapFont>("font");
@@ -24,9 +26,10 @@ namespace Tune_It_In
 
         public void Update(GameTime gameTime)
         {
-            if (lastUpdate == null)
+            if (begin)
             {
                 lastUpdate = gameTime.TotalGameTime;
+                begin = false;
             }
 
             if (gameTime.TotalGameTime.TotalSeconds - lastUpdate.TotalSeconds >= 1)
@@ -42,6 +45,11 @@ namespace Tune_It_In
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(font, string.Format("{0:00}: {1:00}", Duration / 60, Duration % 60), new Vector2(50, 50), Color.DarkGray);
+        }
+
+        public void Reset()
+        {
+            begin = true;
         }
     }
 }

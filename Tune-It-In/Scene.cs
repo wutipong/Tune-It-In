@@ -13,7 +13,7 @@ namespace Tune_It_In
     {
         public abstract void Load(ContentManager content);
 
-        public abstract void Update(GameTime gameTime, Input input);
+        public abstract bool Update(GameTime gameTime, Input input);
 
         public abstract void Draw(SpriteBatch spriteBatch);
     }

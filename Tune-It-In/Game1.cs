@@ -25,6 +25,9 @@ namespace Tune_It_In
         private Input input;
 
         private GameScene gameScene = new GameScene();
+        private GameOverScene gameOverScene = new GameOverScene();
+        private StaticScene titleScene = new StaticScene() { Resource = "title" };
+        private StaticScene howtoScene = new StaticScene() { Resource = "howto" };
 
         public Game1()
         {
@@ -48,7 +51,7 @@ namespace Tune_It_In
 
             base.Initialize();
 
-            scene = gameScene;
+            scene = titleScene;
 
             keyboardListener = new KeyboardListener();
             keyboardListener.KeyReleased += KeyboardListener_KeyReleased;
@@ -114,9 +117,11 @@ namespace Tune_It_In
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            titleScene.Load(Content);
+            howtoScene.Load(Content);
 
             gameScene.Load(Content);
+            gameOverScene.Load(Content);
         }
 
         /// <summary>
@@ -140,7 +145,29 @@ namespace Tune_It_In
             keyboardListener.Update(gameTime);
             gamePadListener.Update(gameTime);
 
-            scene.Update(gameTime, input);
+            bool result = scene.Update(gameTime, input);
+            if (result == true)
+            {
+                if (scene == titleScene)
+                {
+                    scene = howtoScene;
+                }
+                else if (scene == howtoScene)
+                {
+                    gameScene.Reset();
+                    scene = gameScene;
+                }
+                else if (scene == gameScene)
+                {
+                    scene = gameOverScene;
+                    gameOverScene.Score = gameScene.Score;
+                    gameOverScene.Reset();
+                }
+                else if (scene == gameOverScene)
+                {
+                    scene = howtoScene;
+                }
+            }
             base.Update(gameTime);
         }
 
