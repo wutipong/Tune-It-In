@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="end.png" width="228" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="new3.png" width="285" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="new2.png" width="285" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="new1.png" width="285" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="count-in1.wav" type="sound"/>
+        <file id="5" name="count-in2.wav" type="sound"/>
+        <file id="6" name="start3.png" width="247" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="start2.png" width="247" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="start1.png" width="247" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="hit.png" width="76" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="correct.wav" type="sound"/>
+        <file id="11" name="miss.png" width="95" height="41" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="incorrect.wav" type="sound"/>
+    </folder>
+    <entity id="0" name="signal">
+        <animation id="0" name="new" length="4000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="500">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="1000">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="3" time="1500">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="4" time="2000">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="5" time="2500">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="6" time="4000">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="new3">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-100" y="22"/>
+                </key>
+                <key id="1" time="500" spin="0">
+                    <object folder="0" file="1" x="-100" y="22" a="0"/>
+                </key>
+                <key id="2" time="1000" spin="0">
+                    <object folder="0" file="1" x="-100" y="22" a="0"/>
+                </key>
+                <key id="3" time="1500" spin="0">
+                    <object folder="0" file="1" x="-100" y="22" a="0"/>
+                </key>
+                <key id="4" time="2000" spin="0">
+                    <object folder="0" file="1" x="-100" y="22" a="0"/>
+                </key>
+                <key id="5" time="4000" spin="0">
+                    <object folder="0" file="1" x="-100" y="22" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="new2">
+                <key id="0" time="1000" spin="0">
+                    <object folder="0" file="2" x="-100" y="22"/>
+                </key>
+                <key id="1" time="1500" spin="0">
+                    <object folder="0" file="2" x="-100" y="22" a="0"/>
+                </key>
+                <key id="2" time="2000" spin="0">
+                    <object folder="0" file="2" x="-100" y="22" a="0"/>
+                </key>
+                <key id="3" time="2500" spin="0">
+                    <object folder="0" file="2" x="-100" y="22" a="0"/>
+                </key>
+                <key id="4" time="4000" spin="0">
+                    <object folder="0" file="2" x="-100" y="22" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="new1">
+                <key id="0" time="2000" spin="0">
+                    <object folder="0" file="3" x="-100" y="22"/>
+                </key>
+                <key id="1" time="2500" spin="0">
+                    <object folder="0" file="3" x="-100" y="22" a="0"/>
+                </key>
+                <key id="2" time="4000" spin="0">
+                    <object folder="0" file="3" x="-100" y="22" a="0"/>
+                </key>
+            </timeline>
+            <soundline id="-1" name="count-in1">
+                <key id="0">
+                    <object folder="0" file="4"/>
+                </key>
+                <key id="1" time="984">
+                    <object folder="0" file="4"/>
+                </key>
+                <key id="2" time="1986">
+                    <object folder="0" file="4"/>
+                </key>
+            </soundline>
+            <soundline id="-1" name="count-in2">
+                <key id="0" time="2990">
+                    <object folder="0" file="5"/>
+                </key>
+            </soundline>
+        </animation>
+        <animation id="1" name="start" length="4000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="500">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="1001">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="3" time="1501">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="4" time="2001">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="5" time="2501">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="6" time="4000">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="start3">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-100" y="22"/>
+                </key>
+                <key id="1" time="500" spin="0">
+                    <object folder="0" file="6" x="-100" y="22" a="0"/>
+                </key>
+                <key id="2" time="4000" spin="0">
+                    <object folder="0" file="6" x="-100" y="22" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="start2">
+                <key id="0" time="1001" spin="0">
+                    <object folder="0" file="7" x="-100" y="22"/>
+                </key>
+                <key id="1" time="1501" spin="0">
+                    <object folder="0" file="7" x="-100" y="22" a="0"/>
+                </key>
+                <key id="2" time="4000" spin="0">
+                    <object folder="0" file="7" x="-100" y="22" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="start1">
+                <key id="0" time="2001" spin="0">
+                    <object folder="0" file="8" x="-100" y="22"/>
+                </key>
+                <key id="1" time="2501" spin="0">
+                    <object folder="0" file="8" x="-100" y="22" a="0"/>
+                </key>
+            </timeline>
+            <soundline id="-1" name="count-in1">
+                <key id="0" time="2">
+                    <object folder="0" file="4"/>
+                </key>
+                <key id="1" time="1001">
+                    <object folder="0" file="4"/>
+                </key>
+                <key id="2" time="2001">
+                    <object folder="0" file="4"/>
+                </key>
+            </soundline>
+            <soundline id="-1" name="count-in2">
+                <key id="0" time="3000">
+                    <object folder="0" file="5"/>
+                </key>
+            </soundline>
+        </animation>
+        <animation id="2" name="end" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="end">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-114" y="23"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="hit-miss">
+        <animation id="0" name="miss" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="98">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="99">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="198">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="1000">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="miss">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-30" y="20"/>
+                </key>
+                <key id="1" time="98" spin="0">
+                    <object folder="0" file="11" x="-30" y="20" a="0.23448"/>
+                </key>
+                <key id="2" time="99" spin="0">
+                    <object folder="0" file="11" x="-30" y="20" a="0.51034"/>
+                </key>
+                <key id="3" time="198" spin="0">
+                    <object folder="0" file="11" x="-30" y="20" a="1"/>
+                </key>
+                <key id="4" time="1000" spin="0">
+                    <object folder="0" file="11" x="-30" y="20" a="0"/>
+                </key>
+            </timeline>
+            <soundline id="-1" name="incorrect">
+                <key id="0">
+                    <object folder="0" file="12"/>
+                </key>
+            </soundline>
+        </animation>
+        <animation id="1" name="hit" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-30" y="22"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="9" x="-30" y="22" a="0"/>
+                </key>
+            </timeline>
+            <soundline id="-1" name="correct">
+                <key id="0">
+                    <object folder="0" file="10"/>
+                </key>
+            </soundline>
+        </animation>
+    </entity>
+</spriter_data>

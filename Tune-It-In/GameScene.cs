@@ -39,10 +39,12 @@ namespace Tune_It_In
         //private int duration = 105;
 
         private CountDownTimer countdown = new CountDownTimer { Duration = 105 };
+        private ScoreCounter score = new ScoreCounter();
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             countdown.Draw(spriteBatch);
+            score.Draw(spriteBatch);
         }
 
         public override void Load(ContentManager content)
@@ -56,6 +58,7 @@ namespace Tune_It_In
             font = content.Load<BitmapFont>("font");
 
             countdown.Load(content);
+            score.Load(content);
         }
 
         public int NextTarget()
@@ -100,9 +103,14 @@ namespace Tune_It_In
 
                 case Input.Enter:
                     if (position == target)
+                    {
                         correct.Play();
+                        score.Score += 100;
+                    }
                     else
+                    {
                         incorrect.Play();
+                    }
 
                     target = NextTarget();
                     break;
