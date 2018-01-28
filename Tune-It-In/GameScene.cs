@@ -39,6 +39,7 @@ namespace Tune_It_In
         private CountDownTimer countdown = new CountDownTimer { Duration = 105 };
         private ScoreCounter score = new ScoreCounter();
         private RadioControl radio = new RadioControl();
+        private ResultControl result = new ResultControl();
         private Texture2D background;
         public int Score { get { return score.Score; } }
 
@@ -49,6 +50,7 @@ namespace Tune_It_In
             score.Draw(spriteBatch);
 
             radio.Draw(spriteBatch);
+            result.Draw(spriteBatch);
         }
 
         public override void Load(ContentManager content)
@@ -63,6 +65,7 @@ namespace Tune_It_In
 
             countdown.Load(content);
             score.Load(content);
+            result.Load(content);
 
             bgmInstance = bgm.CreateInstance();
             noise1 = pinkNoise.CreateInstance();
@@ -118,13 +121,15 @@ namespace Tune_It_In
                     if (position == target)
                     {
                         correct.Play();
-                        score.AddScore(gameTime);
+                        var s = score.AddScore(gameTime);
                         target = NextTarget();
+                        result.Hit(s);
                     }
                     else
 
                     {
                         incorrect.Play();
+                        result.Miss();
                     }
 
                     break;
@@ -143,7 +148,7 @@ namespace Tune_It_In
             bgmInstance.Volume *= 1.0f - noiseVolumeFactor * factor;
 
             countdown.Update(gameTime);
-
+            result.Update(gameTime);
             if (countdown.Duration == 0)
             {
                 noise1.Stop();

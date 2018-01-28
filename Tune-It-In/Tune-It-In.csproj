@@ -49,6 +49,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadioControl.cs" />
+    <Compile Include="ResultControl.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="ScoreCounter.cs" />
     <Compile Include="StaticScene.cs" />
